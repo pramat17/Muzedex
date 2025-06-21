@@ -1,0 +1,8 @@
+app_identifier("org.jpeuxpasjaimusee.sae56-2025.y11") # The bundle identifier of your app
+apple_id("melvin.warnet@gmail.com") # Your Apple Developer Portal username
+
+itc_team_id("118493828") # App Store Connect Team ID
+team_id("Q62AC6XMFD") # Developer Portal Team ID
+
+# For more information about the Appfile, see:
+#     https://docs.fastlane.tools/advanced/#appfile

@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dep-apirest-prod
+  namespace: ns-2024-sae5-y11
+  labels:
+    app: apirest-prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: apirest-prod
+  template:
+    metadata:
+      labels:
+        app: apirest-prod
+    spec:
+      volumes:
+      - name: vol-static-content-prod
+      containers:
+      - name: container-nginx-prod
+        image: forge-registry.iut-larochelle.fr/ns-2024-sae5-y11/prod/img-nginx-apirest-muzedex:latest
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - mountPath: /usr/share/nginx/html
+          name: vol-static-content-prod
+      - name: container-apirest-prod
+        image: forge-registry.iut-larochelle.fr/ns-2024-sae5-y11/prod/img-php-apirest-muzedex:latest
+        ports:
+        - containerPort: 9000
+        volumeMounts:
+        - mountPath: /usr/share/nginx/html
+          name: vol-static-content-prod
+        env:
+        - name: COMPOSER_ALLOW_SUPERUSER
+          value: "1"
+        lifecycle:
+          postStart:
+            exec:
+              command: ["/bin/sh", "-c", "cd /app/muzedex_api && composer update && php bin/console doctrine:migrations:migrate --no-interaction && php bin/console doctrine:fixtures:load --no-interaction && cp -r /app/muzedex_api /usr/share/nginx/html/muzedex_api && chmod -R 777 /usr/share/nginx/html/muzedex_api/var"]
+      - name: container-database-prod
+        image: forge-registry.iut-larochelle.fr/mariadb/mariadb-10.10.2
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: rdbsfapi
+        - name: MYSQL_DATABASE
+          value: dbsfapi
+        - name: MYSQL_USER
+          value: udbsfapi
+        - name: MYSQL_PASSWORD
+          value: pdbsfapi
+      
+

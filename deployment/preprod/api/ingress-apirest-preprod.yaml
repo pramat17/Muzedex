@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-apirest-preprod
+  namespace: ns-2024-sae5-y11
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx 
+  rules:
+  - host: ns-2024-sae5-y11-api-preprod.labs.iut-larochelle.fr 
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: svc-apirest-preprod
+            port:
+              number: 80

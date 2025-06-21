@@ -1,0 +1,6 @@
+kind : Namespace
+apiVersion : v1
+metadata:
+  name: ns-2024-sae5-y11
+  labels:
+    name: ns-2024-sae5-y11

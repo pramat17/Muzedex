@@ -1,0 +1,37 @@
+default_platform(:ios)
+
+platform :ios do
+  # Lane de build
+  desc "Build the app"
+  lane :build do
+    increment_build_number(xcodeproj: "Runner.xcodeproj")
+    build_app(workspace: "Runner.xcworkspace", scheme: "Runner")
+  end
+
+  # Lane d'upload en preprod
+  desc "Upload preprod to TestFlight"
+  lane :deploy_preprod do
+    upload_to_testflight(
+      beta_app_description: "Un jeu trop cool pour des musées trop trop cool",
+      beta_app_feedback_email: "melvin.warnet@gmail.com",
+      distribute_external: true,
+      groups: "EquipeMuzedexExterne",
+      uses_non_exempt_encryption: false,
+      changelog: "Ceci est la dernière version de pre-production de cette application"
+    )
+  end
+
+  # Lane d'upload en prod
+  desc "Upload prod to TestFlight"
+  lane :deploy_prod do
+    upload_to_testflight(
+      beta_app_description: "Un jeu trop cool pour des musées trop trop cool",
+      beta_app_feedback_email: "melvin.warnet@gmail.com",
+      distribute_external: true,
+      groups: "EquipeMuzedexExterne",
+      uses_non_exempt_encryption: false,
+      changelog: "Ceci est la dernière release de cette application"
+    )
+  end
+  
+end

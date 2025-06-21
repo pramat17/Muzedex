@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: svc-apirest-prod
+  namespace: ns-2024-sae5-y11
+  labels:
+    app: apirest-prod
+spec:
+  selector:
+    app: apirest-prod
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80

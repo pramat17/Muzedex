@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dep-affiche
+  namespace: ns-2024-sae5-y11
+  labels:
+    app: affiche
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: affiche
+  template:
+    metadata:
+      labels:
+        app: affiche
+    spec:
+      containers:
+      - name: container-nginx-affiche
+        image: forge-registry.iut-larochelle.fr/ns-2024-sae5-y11/affiche:latest
+        ports:
+        - containerPort: 80
+

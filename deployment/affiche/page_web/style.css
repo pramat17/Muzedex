@@ -1,0 +1,207 @@
+/* -------------------------------------
+   RÉINITIALISATION DE BASE
+-------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* -------------------------------------
+     STYLES GLOBAUX
+  -------------------------------------- */
+  body {
+    font-family: 'Poppins', sans-serif;
+    /* Image de fond pleine page (parallaxe) */
+    background: url("background.png") center/cover no-repeat fixed;
+    color: #4f3c2e;
+    line-height: 1.5;
+  }
+  
+  /* Titres en Josefin Slab (plus élégant) */
+  h1, h2 {
+    font-family: 'Josefin Slab', serif;
+    margin: 0.5rem 0;
+  }
+  
+  /* -------------------------------------
+     HEADER
+  -------------------------------------- */
+  header {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  /* Feuilles en haut */
+  .leaves-top img {
+    width: 100%;
+    display: block;
+  }
+  
+  /* Bandeau en bois */
+  .wooden-bar {
+    background: url("woodtexture.png") center/cover no-repeat;
+    text-align: center;
+    padding: 2rem 1rem;
+  }
+  .wooden-bar h1 {
+    color: #fff;
+    font-size: 2.2rem;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Slogan sur fond parchemin */
+  .slogan-container {
+    background: url("image.png") center/cover repeat;
+    text-align: center;
+    padding: 1.5rem 1rem;
+  }
+  .slogan-container p {
+    font-size: 1.2rem;
+    max-width: 600px;
+    margin: 0 auto;
+    font-weight: 600;
+    color: #4f3c2e;
+  }
+  
+  /* -------------------------------------
+     CONTENU PRINCIPAL
+  -------------------------------------- */
+  main {
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    padding-bottom: 2rem;
+  }
+  
+  /* SECTION DE TÉLÉCHARGEMENT */
+  .download-section {
+    background: #fcf7eb; /* Couleur légèrement plus claire que #f8efdc */
+    margin: 2rem auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 2rem 3rem;
+    animation: fadeInUp 1s forwards;
+    transform: translateY(30px);
+    opacity: 0;
+    max-width: 900px; /* Limiter la largeur si on veut, sinon enlever */
+  }
+  
+  /* Conteneur flex : texte & Zarafa */
+  .download-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap; /* Passe en colonne sur mobile au besoin */
+  }
+  
+  /* Colonne gauche : Titre + Boutons */
+  .download-text {
+    flex: 1;
+    text-align: center;
+  }
+  .download-text h2 {
+    font-size: 1.8rem;
+    color: #4f3c2e;
+    margin-bottom: 1.5rem;
+  }
+  .button-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+  
+  /* Colonne droite : Zarafa */
+  .download-zarafa {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .zarafa {
+    max-width: 200px;
+    animation: floatZarafa 3s ease-in-out infinite; /* Effet flottant */
+    cursor: pointer;
+  }
+  
+  /* -------------------------------------
+     BOUTONS
+  -------------------------------------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.8rem;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #b2804f, #996435);
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+  }
+  .btn i {
+    font-size: 1.1rem;
+  }
+  
+  /* -------------------------------------
+     FOOTER
+  -------------------------------------- */
+  footer {
+    background: #4f3c2e;
+    color: #f8efdc;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+  
+  /* -------------------------------------
+     ANIMATIONS
+  -------------------------------------- */
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes floatZarafa {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+  
+  /* BOUNCE (pour le JS) */
+  .bounce {
+    animation: bounceZarafa 0.5s ease;
+  }
+  
+  @keyframes bounceZarafa {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
